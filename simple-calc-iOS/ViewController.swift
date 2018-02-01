@@ -22,6 +22,10 @@ enum Operation : String {
 
 class ViewController: UIViewController {
     
+    @IBAction func history(_ sender: UIButton) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //label.text = "0" // changes text to 0
