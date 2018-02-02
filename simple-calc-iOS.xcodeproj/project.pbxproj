@@ -14,6 +14,7 @@
 		B23CAE7A2019CFAC001C36A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B23CAE782019CFAC001C36A5 /* LaunchScreen.storyboard */; };
 		B23CAE852019CFAC001C36A5 /* simple_calc_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CAE842019CFAC001C36A5 /* simple_calc_iOSTests.swift */; };
 		B23CAE902019CFAC001C36A5 /* simple_calc_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23CAE8F2019CFAC001C36A5 /* simple_calc_iOSUITests.swift */; };
+		B247C96D2022E0D4009C10FF /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247C96C2022E0D4009C10FF /* ViewController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		B23CAE8B2019CFAC001C36A5 /* simple-calc-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "simple-calc-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B23CAE8F2019CFAC001C36A5 /* simple_calc_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simple_calc_iOSUITests.swift; sourceTree = "<group>"; };
 		B23CAE912019CFAC001C36A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B247C96C2022E0D4009C10FF /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				B23CAE6F2019CFAC001C36A5 /* AppDelegate.swift */,
 				B23CAE712019CFAC001C36A5 /* ViewController.swift */,
+				B247C96C2022E0D4009C10FF /* ViewController2.swift */,
 				B23CAE732019CFAC001C36A5 /* Main.storyboard */,
 				B23CAE762019CFAC001C36A5 /* Assets.xcassets */,
 				B23CAE782019CFAC001C36A5 /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 			files = (
 				B23CAE722019CFAC001C36A5 /* ViewController.swift in Sources */,
 				B23CAE702019CFAC001C36A5 /* AppDelegate.swift in Sources */,
+				B247C96D2022E0D4009C10FF /* ViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

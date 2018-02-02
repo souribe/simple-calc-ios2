@@ -21,31 +21,52 @@ enum Operation : String {
 }
 
 class ViewController: UIViewController {
-    
-    @IBAction func history(_ sender: UIButton) {
-        
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //label.text = "0" // changes text to 0
     }
-    
+    var wordBank:[String] = []
     var numbers = ""
     var lValue = ""
     var rValue = ""
     var result = ""
     var curOperation : Operation = .Null
     
+    var bankHist = ""
+    
     var addCount = 1
     var avgCount = 0
     var addAvg : Double = 0
     
+    func clear() {
+        numbers = ""
+        lValue = ""
+        rValue = ""
+        result = ""
+        bankHist = ""
+        curOperation = .Null
+//        label.text = "0"
+        
+        addCount = 0
+        avgCount = 0
+        addAvg = 0
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ViewController2 {
+            let talkView = segue.destination as? ViewController2
+            talkView?.wordBank = wordBank
+        }
+    }
+    
     @IBOutlet weak var label: UILabel!
     
     @IBAction func numbersPressed(_ sender: UIButton) {
+        
         if numbers.count <= 8 {
             numbers += "\(sender.tag)"
+            bankHist += "\(sender.tag)"
             label.text = numbers
         }
     }
@@ -55,22 +76,15 @@ class ViewController: UIViewController {
         if !(label.text?.contains("."))! && !numbers.contains(".") {
             if numbers.count <= 7 {
                 numbers += "."
+                bankHist += "."
                 label.text = numbers
             }
         }
     }
     
     @IBAction func allClear(_ sender: UIButton) {
-        numbers = ""
-        lValue = ""
-        rValue = ""
-        result = ""
-        curOperation = .Null
+        clear()
         label.text = "0"
-        
-        addCount = 0
-        avgCount = 0
-        addAvg = 0
     }
     
     @IBAction func equals(_ sender: UIButton) {
@@ -87,6 +101,8 @@ class ViewController: UIViewController {
                 result = "\((addAvg) / Double(avgCount))"
                 label.text = checkTrunc(result: result) //checkTrunc(result: result) // check truncated
                 
+                //bankHist += checkTrunc(result: String(Double(numbers)!))
+                //wordBank.append("\(bankHist) = \(label.text!)")
                 // reset Avg values
                 avgCount = 0
                 addAvg = 0
@@ -94,7 +110,9 @@ class ViewController: UIViewController {
             } else {
                 operation(operation: curOperation)
             }
+            wordBank.append("\(bankHist)  =  \(label.text!)")
         }
+        clear()
     }
     
     @IBAction func add(_ sender: UIButton) {
@@ -125,12 +143,16 @@ class ViewController: UIViewController {
         operation(operation: .Avg)
         if lValue != "" {
             addAvg += Double(lValue)!
+            //bankHist += checkTrunc(result: String(Double(lValue)!))
+
         } else  if rValue != "" {
             addAvg += Double(rValue)!
+            //bankHist += checkTrunc(result: String(Double(rValue)!))
         } else {
             avgCount -= 1 // resets the +1 when nothing is inputted
         }
         avgCount += 1
+        bankHist += " avg "
     }
     @IBAction func fact(_ sender: UIButton) {
         operation(operation: .Fact)
@@ -156,20 +178,16 @@ class ViewController: UIViewController {
                         if result == "inf" {
                             big = true
                         }
-                    
-//                    } else {
-//                        result = "too big"
-//                        big = true
-//                    }
                 } else {
                     result = "0"
                 }
             }
             label.text = result
+            wordBank.append("\(Int(Double(lValue)!)) fact = \(result)")
             if big == true {
                 result = "0"
             }
-            lValue = result
+            lValue = result // does not currently work with clearing
         }
         curOperation = .Null
     }
@@ -180,17 +198,26 @@ class ViewController: UIViewController {
                 rValue = numbers
                 numbers = ""
                 
+                var op = ""
                 if curOperation == .Add {
                     result = "\(Double(lValue)! + Double(rValue)!)"
+                    op = " + "
                 } else if curOperation == .Subtract {
                     result = "\(Double(lValue)! - Double(rValue)!)"
+                    op = " - "
                 } else if curOperation == .Multiply {
                     result = "\(Double(lValue)! * Double(rValue)!)"
+                    op = " * "
                 } else if curOperation == .Divide {
                     result = "\(Double(lValue)! / Double(rValue)!)"
+                    op = " ÷ "
                 } else if curOperation == .Mod {
                     result = "\(Double(lValue)!.truncatingRemainder(dividingBy: Double(rValue)!))"
+                    op = " % "
                 }
+                //bankHist += checkTrunc(result:"\(Double(lValue)!)")
+                bankHist += " \(op) "
+                //bankHist += checkTrunc(result: "\(Double(rValue)!)")
 
                 lValue = result //hold current result for next use
                 if curOperation != .Avg && curOperation != .Count {
@@ -221,7 +248,9 @@ class ViewController: UIViewController {
     // Helper function to check if there are remainders that need to be removed (0)
     private func checkTrunc(result: String) -> String {
         if (Double(result)!.truncatingRemainder(dividingBy: 1) == 0) { // check for remainder of 0 (integer)
-            return String(Int(Double(result)!))
+            if Double(result)! <= Double(Int.max) { // doesnt convert to int unless less than or equal to max
+                return String(Int(Double(result)!))
+            }
         }
         return result
     }

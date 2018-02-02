@@ -4,7 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment version="2304" identifier="iOS"/>
+        <deployment version="2320" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -91,7 +91,7 @@
                                                     <action selector="allClear:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z7b-pp-oFY"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jvr-yQ-LRQ">
+                                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jvr-yQ-LRQ">
                                                 <rect key="frame" x="88" y="0.0" width="79.5" height="75"/>
                                                 <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -99,7 +99,7 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="history:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mwz-8r-qpZ"/>
+                                                    <segue destination="rdf-Sb-IyX" kind="show" id="kbY-7Z-cdd"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKu-VP-uUO">
@@ -302,9 +302,6 @@
                                                 <state key="normal">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="dot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p7s-0i-tmz"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6i-Vz-6dv">
                                                 <rect key="frame" x="263.5" y="0.0" width="79.5" height="75"/>
@@ -351,36 +348,49 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="116" y="118.29085457271366"/>
+            <point key="canvasLocation" x="-191" y="166"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller2-->
         <scene sceneID="4zD-S6-WbA">
             <objects>
-                <viewController storyboardIdentifier="Second" id="rdf-Sb-IyX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Second" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rdf-Sb-IyX" customClass="ViewController2" customModule="simple_calc_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m5z-xb-zi9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xcD-4z-lIV">
-                                <rect key="frame" x="67" y="60" width="240" height="477"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xcD-4z-lIV">
+                                <rect key="frame" x="67" y="60" width="240" height="533"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLQ-PB-UMi">
-                                <rect key="frame" x="107" y="586" width="161" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLQ-PB-UMi">
+                                <rect key="frame" x="107" y="611" width="161" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Back to Calculator">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="Hkh-1D-yNN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iLQ-PB-UMi" firstAttribute="leading" secondItem="0ko-AV-Vru" secondAttribute="leading" constant="107" id="0aU-HG-mF6"/>
+                            <constraint firstItem="0ko-AV-Vru" firstAttribute="trailing" secondItem="xcD-4z-lIV" secondAttribute="trailing" constant="68" id="Eud-re-F3I"/>
+                            <constraint firstItem="xcD-4z-lIV" firstAttribute="leading" secondItem="0ko-AV-Vru" secondAttribute="leading" constant="67" id="Hqx-7W-8n3"/>
+                            <constraint firstItem="iLQ-PB-UMi" firstAttribute="top" secondItem="xcD-4z-lIV" secondAttribute="bottom" constant="18" id="WFu-0T-vSh"/>
+                            <constraint firstItem="0ko-AV-Vru" firstAttribute="trailing" secondItem="iLQ-PB-UMi" secondAttribute="trailing" constant="107" id="gC4-w5-nGU"/>
+                            <constraint firstItem="0ko-AV-Vru" firstAttribute="bottom" secondItem="iLQ-PB-UMi" secondAttribute="bottom" constant="20" id="uP8-qC-k7J"/>
+                            <constraint firstItem="xcD-4z-lIV" firstAttribute="top" secondItem="0ko-AV-Vru" secondAttribute="top" constant="40" id="uQf-4d-JAm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="0ko-AV-Vru"/>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="xcD-4z-lIV" id="uXQ-ed-phg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gsf-GT-ecF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="861.60000000000002" y="117.39130434782609"/>
+            <point key="canvasLocation" x="780" y="118"/>
         </scene>
     </scenes>
 </document>
