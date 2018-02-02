@@ -27,15 +27,14 @@ class ViewController: UIViewController {
         //label.text = "0" // changes text to 0
     }
     var wordBank:[String] = []
+    var bankHist = ""
+    
     var numbers = ""
     var lValue = ""
     var rValue = ""
     var result = ""
     var curOperation : Operation = .Null
-    
-    var bankHist = ""
-    
-    var addCount = 1
+    var addCount = 0
     var avgCount = 0
     var addAvg : Double = 0
     
@@ -101,8 +100,6 @@ class ViewController: UIViewController {
                 result = "\((addAvg) / Double(avgCount))"
                 label.text = checkTrunc(result: result) //checkTrunc(result: result) // check truncated
                 
-                //bankHist += checkTrunc(result: String(Double(numbers)!))
-                //wordBank.append("\(bankHist) = \(label.text!)")
                 // reset Avg values
                 avgCount = 0
                 addAvg = 0
@@ -117,18 +114,23 @@ class ViewController: UIViewController {
     
     @IBAction func add(_ sender: UIButton) {
         operation(operation: .Add)
+            bankHist += " + "
     }
     @IBAction func subtract(_ sender: UIButton) {
         operation(operation: .Subtract)
+        bankHist += " - "
     }
     @IBAction func multiply(_ sender: UIButton) {
         operation(operation: .Multiply)
+        bankHist += " * "
     }
     @IBAction func divide(_ sender: UIButton) {
         operation(operation: .Divide)
+        bankHist += " ÷ "
     }
     @IBAction func mod(_ sender: UIButton) {
         operation(operation: .Mod)
+        bankHist += " % "
     }
     
     ///////////
@@ -136,6 +138,7 @@ class ViewController: UIViewController {
     @IBAction func count(_ sender: UIButton) {
         if numbers != "" {
             addCount += 1
+            bankHist += " count "
         }
         operation(operation: .Count)
     }
@@ -143,11 +146,8 @@ class ViewController: UIViewController {
         operation(operation: .Avg)
         if lValue != "" {
             addAvg += Double(lValue)!
-            //bankHist += checkTrunc(result: String(Double(lValue)!))
-
         } else  if rValue != "" {
             addAvg += Double(rValue)!
-            //bankHist += checkTrunc(result: String(Double(rValue)!))
         } else {
             avgCount -= 1 // resets the +1 when nothing is inputted
         }
@@ -198,26 +198,20 @@ class ViewController: UIViewController {
                 rValue = numbers
                 numbers = ""
                 
-                var op = ""
                 if curOperation == .Add {
                     result = "\(Double(lValue)! + Double(rValue)!)"
-                    op = " + "
                 } else if curOperation == .Subtract {
                     result = "\(Double(lValue)! - Double(rValue)!)"
-                    op = " - "
+                    
                 } else if curOperation == .Multiply {
                     result = "\(Double(lValue)! * Double(rValue)!)"
-                    op = " * "
+                    
                 } else if curOperation == .Divide {
                     result = "\(Double(lValue)! / Double(rValue)!)"
-                    op = " ÷ "
+                    
                 } else if curOperation == .Mod {
                     result = "\(Double(lValue)!.truncatingRemainder(dividingBy: Double(rValue)!))"
-                    op = " % "
                 }
-                //bankHist += checkTrunc(result:"\(Double(lValue)!)")
-                bankHist += " \(op) "
-                //bankHist += checkTrunc(result: "\(Double(rValue)!)")
 
                 lValue = result //hold current result for next use
                 if curOperation != .Avg && curOperation != .Count {
